@@ -1,0 +1,7 @@
+.DS_Store
+data/
+bck.*
+colvar
+coord.pdb
+output.out
+trajectory.dcd
