@@ -1,0 +1,29 @@
+---------------------- Binding Energy ---------------------
+FES Filename   : fes_1D.dat          
+Spring constant: 14473.0000000000 kJ / mol / nm^2
+Cylinder radius: 0.5000000000 nm
+Temperature    : 300.0000000000 K
+  kBT          : 2.4943387854 kJ/mol
+Integral limits:
+ Bound         : -0.5000000000 - 0.3000000000 nm
+ Unbound       : 0.3000000000 - 1.4000000000 nm
+Standard volume: 1.6610000000 nm^3
+Potential energy surface aligned to unbound region in file aligned_fes.dat
+Unbound volume : 0.9219883628 nm^3
+-----------------------------------------------------------
+Binding free energy (dG)        :      10.75 kJ/mol
+Volume correction   (dG)        :      -1.47 kJ/mol
+Total corrected free energy (dG):       9.28 kJ/mol
+-----------------------------------------------------------
+--------------------- Bound correction --------------------
+Fit limits:
+ Lower         : -0.1500000000 nm
+ Upper         : 0.1500000000 nm
+Fitted spring constant: 2266.6153171129 kJ / mol / nm^2
+Harmonic fit written to fit_harmonic.dat
+Estimated unrestrained bound volume: 0.0005749581 nm^3
+Estimated restrained bound volume: 0.0696965850 nm^3
+-----------------------------------------------------------
+Estimated volume correction free energy (dG):       0.00 kJ/mol
+-----------------------------------------------------------
+Final corrected binding free energy:       9.28 kJ/mol

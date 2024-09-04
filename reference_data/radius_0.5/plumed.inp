@@ -1,0 +1,85 @@
+# Required for multiple walkers. Ensures each walker
+# reads HILLS from all walkers when initialised.
+RESTART
+
+# Simulation units (OpenMM units).
+UNITS ENERGY=kj/mol LENGTH=nm TIME=ps
+
+# Z-distance collective variable.
+fixed1: FIXEDATOM AT=2.50,2.50,2.50
+d1: DISTANCE ATOMS=fixed1,1 NOPBC COMPONENTS
+
+# Flat-bottomed cylindrical restraining potential.
+rd: CUSTOM ...
+   
+   ARG=d1.x,d1.y
+   VAR=x,y
+   FUNC=0.5*14473*(max(0,sqrt(x^2+y^2)-0.5))^2
+   PERIODIC=NO
+...
+
+rdb: BIASVALUE ARG=rd
+
+# Upper and lower harmonic walls.
+# Upper wall prevents the binding atom from going too
+# far from the surface.
+# Lower wall emulates the repulsion of a surface.
+uwall: UPPER_WALLS ARG=d1.z  AT=1.500 KAPPA=14473
+lwall: LOWER_WALLS ARG=d1.z AT=-0.125 KAPPA=14473
+
+# The following is used to create an arbitrary potential
+# energy surface that mimics the binding profile of an atom
+# normal to a surface. There will be a minimum at 2.5, 2.5, 2.5
+# to represent a stable surface site and a maximum at 2.5,2.5,2.8
+# to represent a barrier for leaving the surface.
+fixed2: FIXEDATOM AT=2.50,2.50,2.80
+d2: DISTANCE ATOMS=fixed2,1 NOPBC COMPONENTS
+
+rd1: CUSTOM ...
+
+   ARG=d1.x,d1.y,d1.z
+   VAR=ax,ay,az
+   FUNC=sqrt(ax^2+ay^2+az^2)
+   PERIODIC=NO
+...
+
+rd2: CUSTOM ...
+
+   ARG=d2.x,d2.y,d2.z
+   VAR=bx,by,bz
+   FUNC=sqrt(bx^2+by^2+bz^2)
+   PERIODIC=NO
+...
+
+g: CUSTOM ...
+
+   ARG=rd1,rd2
+   VAR=x,y
+   FUNC=-30*exp(-((x)^2/(2*(0.1^2))))+15*exp(-((y)^2/(2*(0.1^2))))
+   PERIODIC=NO
+...
+
+pes: BIASVALUE ARG=g
+
+# Output a collective variable file to monitor
+# that everything in the simulation is proceeding as
+# expected.
+PRINT FILE=colvar STRIDE=1000 ARG=*
+
+# Flushing the output every 1000 steps.
+FLUSH STRIDE=1000
+
+# Run metadynamics.
+METAD ...
+  ARG=d1.z                      # Active CV.
+  HEIGHT=2.5                    # Gaussian height. Approximately kBT in this case.
+  SIGMA=0.01                    # gaussian width.
+  PACE=1000                     # Gaussian deposition pace.
+  BIASFACTOR=18 TEMP=300        # Well-tempered parameters.
+  GRID_MIN=-0.5                 # Grid parameters for d1.z CV.
+  GRID_MAX=1.8                  # 
+  WALKERS_DIR=../BIAS           # Multiple walkers directory for reading/writing BIAS.
+  WALKERS_RSTRIDE=1000          # Multiple walkers reading pace.
+  WALKERS_ID=REPLACEWALKERID    # ID of current walker.
+  WALKERS_N=REPLACETOTALWALKERS # Total number of walkers.
+... METAD
