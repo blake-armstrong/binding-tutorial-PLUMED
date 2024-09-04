@@ -123,4 +123,4 @@ Standardising this quantity allows it it to be compared with other simulations a
 
 ---
 
-[Back to binding tutorial main page.](../README.md)
+[Back to binding tutorial main page.](../NAVIGATE.md)

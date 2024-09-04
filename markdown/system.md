@@ -18,4 +18,4 @@ The details on how this is implemented in PLUMED is discussed in the [input file
 
 ---
 
-[Back to binding tutorial main page.](../README.md)
+[Back to binding tutorial main page.](../NAVIGATE.md)
