@@ -1,6 +1,6 @@
 <h3>Input files</h3>
 
-All files and data required to perform this tutorial are on the [GitHub repository](https://github.com/blake-armstrong/binding-tutorial-PLUMED). They can be accessed by cloning the reposity to the machine you're working on:
+All files and data required to perform this tutorial are on the [GitHub repository](https://github.com/blake-armstrong/binding-tutorial-PLUMED). They can be accessed by cloning the repository to the machine you're working on:
 
 ```
 git clone https://github.com/blake-armstrong/binding-tutorial-PLUMED

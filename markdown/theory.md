@@ -17,15 +17,16 @@ where $W_R{(z)}$ is the PMF as a function of our collective variable, the z-dist
 $$
 U(r) = \frac{1}{2}K \cdot r^2 
 $$
+
 $$
 r = x^2 + y^2
 $$
 
 $$
 \begin{align*}
-\text{volume} &= \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\exp\left(-\frac{U(r)}{k_BT}\right) dx\ dy \\[2ex]
-&= \int_{0}^{+\infty}\int_{0}^{2\pi}r \exp\left(-\frac{U(r)}{k_BT}\right) dr\ d\theta \\[2ex]
-&= 2\pi\left[\int_{0}^{+\infty}r \exp\left(-\frac{K \cdot r^2}{2k_BT}\right) dr\right] \\[2ex]
+\text{volume} &= \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\exp \left (-\frac{U(r)}{k_BT}\right) dx\ dy \\
+&= \int_{0}^{+\infty}\int_{0}^{2\pi}r \exp\left(-\frac{U(r)}{k_BT}\right) dr\ d\theta \\
+&= 2\pi\left[\int_{0}^{+\infty}r \exp\left(-\frac{K \cdot r^2}{2k_BT}\right) dr\right] \\
 &= 2\pi\left[\frac{k_BT}{K} \right]
 \end{align*}
 $$
@@ -48,10 +49,10 @@ $$
 
 $$
 \begin{align*}
-\text{volume} &= \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\exp\left(-\frac{U(r)}{k_BT}\right) dx\ dy \\[2ex]
-&= \int_{0}^{+\infty}\int_{0}^{2\pi}r \exp\left(-\frac{U(r)}{k_BT}\right) dr\ d\theta \\[2ex]
-&= 2\pi\left[\int_{0}^{R}r dr + \int_{R}^{+\infty}r \exp\left(-\frac{K(r-R)^2}{2k_BT}\right) dr\right] \\[2ex]
-&= 2\pi\left[\frac{1}{2}R^2 + \int_{0}^{+\infty}(r+R) \exp\left(-\frac{Kr^2}{2k_BT}\right) dr\right] \\[2ex]
+\text{volume} &= \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\exp\left(-\frac{U(r)}{k_BT}\right) dx\ dy \\
+&= \int_{0}^{+\infty}\int_{0}^{2\pi}r \exp\left(-\frac{U(r)}{k_BT}\right) dr\ d\theta \\
+&= 2\pi\left[\int_{0}^{R}r dr + \int_{R}^{+\infty}r \exp\left(-\frac{K(r-R)^2}{2k_BT}\right) dr\right] \\
+&= 2\pi\left[\frac{1}{2}R^2 + \int_{0}^{+\infty}(r+R) \exp\left(-\frac{Kr^2}{2k_BT}\right) dr\right] \\
 &= 2\pi\left[\frac{1}{2}R^2 + R\sqrt{\frac{\pi k_BT}{2K}} +\frac{k_BT}{K} \right]
 \end{align*}
 $$
@@ -64,15 +65,13 @@ $$
 r = x^2
 $$
 
-$$
-\begin{align*}
-\text{volume} &= \int_{-\infty}^{+\infty}\exp\left(-\frac{U(r)}{k_BT}\right) dx \\[2ex]
-&= 2\left[\int_{0}^{R} dr + \int_{R}^{+\infty} \exp\left(-\frac{U(r)}{k_BT}\right) dx \right] \\[2ex]
-&= 2\left[\int_{0}^{R} dr + \int_{R}^{+\infty} \exp\left(-\frac{K(r-R)^2}{2k_BT}\right) dx \right] \\[2ex]
-&= 2\left[\int_{0}^{R} dr + \int_{0}^{+\infty} \exp\left(-\frac{Kr^2}{2k_BT}\right) dx \right] \\[2ex]
+$$\begin{align*}
+\text{volume} &= \int_{-\infty}^{+\infty}\exp\left(-\frac{U(r)}{k_BT}\right) dx \\
+&= 2\left[\int_{0}^{R} dr + \int_{R}^{+\infty} \exp\left(-\frac{U(r)}{k_BT}\right) dx \right] \\
+&= 2\left[\int_{0}^{R} dr + \int_{R}^{+\infty} \exp\left(-\frac{K(r-R)^2}{2k_BT}\right) dx \right] \\
+&= 2\left[\int_{0}^{R} dr + \int_{0}^{+\infty} \exp\left(-\frac{Kr^2}{2k_BT}\right) dx \right] \\
 &= 2\left[R + \sqrt{\frac{\pi k_BT}{2K}} \right]
-\end{align*}
-$$
+\end{align*}$$
 
 <h3>3D</h3>
 
@@ -83,16 +82,16 @@ $$
 $$
 \begin{align*}
 \text{volume} &= \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\exp\left(-\frac{U(r)}{k_BT}\right) dx\ dy\ dz \\[2ex]
-&= \int_{0}^{+\infty}\int_{0}^{2\pi}\int_{0}^{\pi}r^2 \sin\phi \exp\left(-\frac{U(r)}{k_BT}\right) dr\ d\theta d\phi \\[2ex]
-&= 4\pi\left[\int_{0}^{R}r^2 dr + \int_{R}^{+\infty}r^2 \exp\left(-\frac{K(r-R)^2}{2k_BT}\right) dr\right] \\[2ex]
-&= 4\pi\left[\frac{1}{3}R^3 + \int_{0}^{+\infty}(r+R)^2 \exp\left(-\frac{Kr^2}{2k_BT}\right) dr\right] \\[2ex]
-&= 4\pi\left[\frac{1}{3}R^3 + \frac{(R^2K+k_BT)}{K}\sqrt{\frac{\pi k_BT}{2K}} +\frac{2Rk_BT}{K} \right] \\[2ex]
+&= \int_{0}^{+\infty}\int_{0}^{2\pi}\int_{0}^{\pi}r^2 \sin\phi \exp\left(-\frac{U(r)}{k_BT}\right) dr\ d\theta d\phi \\
+&= 4\pi\left[\int_{0}^{R}r^2 dr + \int_{R}^{+\infty}r^2 \exp\left(-\frac{K(r-R)^2}{2k_BT}\right) dr\right] \\
+&= 4\pi\left[\frac{1}{3}R^3 + \int_{0}^{+\infty}(r+R)^2 \exp\left(-\frac{Kr^2}{2k_BT}\right) dr\right] \\
+&= 4\pi\left[\frac{1}{3}R^3 + \frac{(R^2K+k_BT)}{K}\sqrt{\frac{\pi k_BT}{2K}} +\frac{2Rk_BT}{K} \right] \\
 \end{align*}
 $$
 
 The 1D and 3D volumes will become relevant when estimating the free energy correction for the bound region in the simple toy system, which will be dicussed in more detail later.
 
-The volume of a cylindrical restraint can then be taken as the 2D volume multiplied by the height of the cylinder. In the context of the original paper by Doudou <em>et al.</em> (1), their Equation 8, the area of the unbound binding ligand, can be replaced by our equation for the volume explored by a flat-bottom harmonic restraining potential in 2D. When R = 0, i.e., there is no flat-bottom, our equation collapses to the original. 
+The volume of a cylindrical restraint can then be taken as the 2D volume multiplied by the height of the cylinder. In the context of the original paper by Doudou <em>et al.</em> (1), their Equation 8 (the area of the unbound binding ligand) can be replaced by our equation for the volume explored by a flat-bottom harmonic restraining potential in 2D. When R = 0, i.e., there is no flat-bottom, our equation collapses to the original. 
 
 The free energy correction for the unbound volume ($\Delta G_V$) is then given by the ratio of our unbound volume ($V_u$) to the standard-state volume ($V^{\minuso} = 1661~\AA^3 $) of a 1 M solution.
 
@@ -100,13 +99,13 @@ $$
 \Delta G_V = -RT \ln{\bigg( \frac{V_u}{V^{\minuso}} \bigg)}
 $$
 
-To correct for the volume explored in the bound region, the simplest way to accurately account for the change in volume before and after applying the cylindrical restraining potential is to use an alchemical free energy perturbation technique. The theory behind alchemical perturbation is not a focus here. An in-depth explanation can be found in any free energy calculation text book or online (any links?). The restraining potential is incremenetally turned off by a scaling parameter ($\lambda$) while the binding ligand remains in the binding site to give a free energy correction for the bound volume ($\Delta G_R$):
+To correct for the volume explored in the bound region, the simplest way to accurately account for the change in volume before and after applying the cylindrical restraining potential is to use an alchemical free energy perturbation technique. The theory behind alchemical perturbation is not a focus here. An in-depth explanation can be found in any free energy calculation text book or [online](https://alchemistry.org/wiki/Main_Page). The restraining potential is incremenetally turned off by a scaling parameter ($\lambda$) while the binding ligand remains in the binding site to give a free energy correction for the bound volume ($\Delta G_R$):
 
 $$
 \Delta G_R = -RT \sum^{n-1}_{i=0} \ln{\bigg \langle  \exp{\bigg( -\frac{U(\lambda_{i+1}) - U(\lambda_i)}{RT} \bigg)}  \bigg \rangle}
 $$
 
-Another method with improved accuracy to calculate free energy differences is the Bennet acceptance ratio method (2). Many MD software have these free energy perturbation techniques implemented already (e.g., [LAMMPS](https://docs.lammps.org/compute_fep.html)), or can be easily implemented by yourself (e.g., [OpenMM](http://docs.openmm.org/7.4.0/api-python/generated/simtk.openmm.app.simulation.Simulation.html) via a custom Reporter for the Simulation object). There are also Python packages that can analyse the raw potential energy changes from an alchemical perturbation simulation and perform the Bennet acceptance ratio method to produce a free energy, see [pymbar](https://github.com/choderalab/pymbar). In the case of our toy system, the alchemical perturbation step will be replaced with an analytical estimate due to the simpplcity of the potential energy surface. See the section on [system setup](system.md) for more details. This will allow the focus to remain on PLUMED and Metadynamics.
+Another method with improved accuracy to calculate free energy differences is the [Bennet acceptance ratio method](https://alchemistry.org/wiki/Bennett_Acceptance_Ratio) (2). Many MD software have these free energy perturbation techniques implemented already (e.g., [LAMMPS](https://docs.lammps.org/compute_fep.html)), or can be easily implemented by yourself (e.g., [OpenMM](http://docs.openmm.org/7.4.0/api-python/generated/simtk.openmm.app.simulation.Simulation.html) via a custom Reporter for the Simulation object). There are also Python packages that can analyse the raw potential energy changes from an alchemical perturbation simulation and perform the Bennet acceptance ratio method to produce a free energy, see [pymbar](https://github.com/choderalab/pymbar). In the case of our toy system, the alchemical perturbation step will be replaced with an analytical estimate due to the simpplcity of the potential energy surface. See the section on [system setup](system.md) and [analysis](analysis.md) for more details. This will allow the focus to remain on PLUMED and Metadynamics.
 
 
 Finally, the standardised binding free energy is obtained from the PMF free energy in combination with the two volume correction steps:
