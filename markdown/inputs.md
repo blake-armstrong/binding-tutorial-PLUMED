@@ -1,12 +1,14 @@
 <h3>Input files</h3>
 
-All files and data required to perform this tutorial are on the [GitHub repository](https://github.com/blake-armstrong/binding-tutorial-PLUMED). They can be accessed by cloning the repository to the machine you're working on:
+All files and data required to perform this tutorial are on the [GitHub repository](https://github.com/blake-armstrong/binding-tutorial-PLUMED). They can either be accessed by cloning the repository to the machine you're working on,
 
 ```
 git clone https://github.com/blake-armstrong/binding-tutorial-PLUMED
 ```
 
-Once inside the repo, the input files required to run a simulation with OpenMM and PLUMED are provided in the `simulation_files` directory. Included in the `scripts` directory are bash scripts that will automate setting up the multiple-walker simulation files and will analyse the output for you. These scripts are not strictly necessary to perform this tutorial, the actions they perform can be done manually by the user. All the data has already been produced and analysed, and is presented in the 'data' directory. We will discuss how that data was produced and analysed so you can do it all yourself.
+or by following the download instructions in the `README.md` page on the repository to download the bare-bones ZIP file.
+
+Once downloaded, the input files required to run a simulation with OpenMM and PLUMED are provided in the `simulation_files` directory. Included in the `scripts` directory are bash scripts that will automate setting up the multiple-walker simulation files and will analyse the output for you. These scripts are not strictly necessary to perform this tutorial, the actions they perform can be done manually by the user. All the data has already been produced and analysed, and is presented in the 'data' directory. We will discuss how that data was produced and analysed so you can do it all yourself.
 
 <h3>OpennMM & PLUMED Installation</h3> 
 
