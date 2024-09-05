@@ -294,4 +294,4 @@ To begin your simulations for a given radius run the command `bash run.sh` from 
 
 ---
 
-[Back to binding tutorial main page.](../NAVIGATE.md)
+[Back to binding tutorial main page.](../NAVIGATION.md)

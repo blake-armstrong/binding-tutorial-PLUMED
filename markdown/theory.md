@@ -96,7 +96,7 @@ The volume of a cylindrical restraint can then be taken as the 2D volume multipl
 The free energy correction for the unbound volume ($\Delta G_V$) is then given by the ratio of our unbound volume ($V_u$) to the standard-state volume ($V^{⦵} = 1661~Å^3 $) of a 1 M solution.
 
 $$
-\Delta G_V = -RT \ln{\bigg( \frac{V_u}{V^{\⦵}} \bigg)}
+\Delta G_V = -RT \ln{\bigg( \frac{V_u}{V^{⦵}} \bigg)}
 $$
 
 To correct for the volume explored in the bound region, the simplest way to accurately account for the change in volume before and after applying the cylindrical restraining potential is to use an alchemical free energy perturbation technique. The theory behind alchemical perturbation is not a focus here. An in-depth explanation can be found in any free energy calculation text book or [online](https://alchemistry.org/wiki/Main_Page). The restraining potential is incremenetally turned off by a scaling parameter ($\lambda$) while the binding ligand remains in the binding site to give a free energy correction for the bound volume ($\Delta G_R$):
@@ -111,7 +111,7 @@ Another method with improved accuracy to calculate free energy differences is th
 Finally, the standardised binding free energy is obtained from the PMF free energy in combination with the two volume correction steps:
 
 $$
-\Delta G^{\⦵} = \Delta G_{PMF} + \Delta G_{V} + \Delta G_{R}
+\Delta G^{⦵} = \Delta G_{PMF} + \Delta G_{V} + \Delta G_{R}
 $$
 
 Standardising this quantity allows it it to be compared with other simulations and experiments, which can be using different free energy methods.
@@ -123,4 +123,4 @@ Standardising this quantity allows it it to be compared with other simulations a
 
 ---
 
-[Back to binding tutorial main page.](../NAVIGATE.md)
+[Back to binding tutorial main page.](../NAVIGATION.md)

@@ -77,7 +77,7 @@ Combing $\Delta G_{PMF}$, $\Delta G_V$ and $\Delta G_R$ produces a final standar
 
 Included below is a table of the standardised binding free energies as a function of the radius of the flat-bottom cylindrical harmonic restraint. 
 
-| Radius (nm)   | $\Delta G_{PMF}$ (kJ/mol) | $\Delta G_{V}$ (kJ/mol) | $\Delta G_{R}$ (kJ/mol)  | $\Delta G^{\minuso}$ (kJ/mol) |
+| Radius (nm)   | $\Delta G_{PMF}$ (kJ/mol) | $\Delta G_{V}$ (kJ/mol) | $\Delta G_{R}$ (kJ/mol)  | $\Delta G^{⦵}$ (kJ/mol) |
 | :--------: | :-------: | :--------: | :--------: | :-------: |
 |0.0 | 23.08 | -18.06 | 4.62 | 9.65 |
 |0.1 | 18.74 | -8.89 | 0.00 | 9.85 |
@@ -105,4 +105,4 @@ This figure makes apparent how the height of the free energy barrier is dependen
 
 ---
 
-[Back to binding tutorial main page.](../NAVIGATE.md)
+[Back to binding tutorial main page.](../NAVIGATION.md)
