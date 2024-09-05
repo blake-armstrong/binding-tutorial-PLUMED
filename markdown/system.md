@@ -4,15 +4,21 @@ Atomistic simulation of these processes can give us insight into how to exert hi
 
 This tutorial will take a simple system consisting of a surface in the xy-plane, with a binding ligand restrained along the z-direction, as shown below:
 
+<figure>
 <p align="center" >
 <a href="link">
 <img src="figures/simple_binding_figure.jpeg" alt="smpl_bnding" width="300"></a></p>
+<figcaption>Simplistic representation of a system used in molecular dynamics simulations to model the binding of a ligand to a surface. The surface has been created in the xy-plane. The yellow cylinder represents the cylindrical harmonic restraint applied to the ligand. The binding ligand can freely move in the z-direction, which is used as the collective variable in the Metadynamics runs.</figcaption>
+</figure>
 
 and construct a system containing one atom of Argon with a global potential energy surface aimed to reproduce the important parts of an actual surface-binding profile. Namely, one would expect there to be a minimum at the binding site, produced by attractive interactions between surface and adsorbate. Also, there would likely be a barrier between the binding site and solution, caused by overcoming the attractive forces with the surface, and by moving through any ordered and slow-to-diffuse solvent on the surface. Lastly, there needs to be a restraining potential acting on the binding ligand to mimic the effects of the surface itself, i.e., to prevent the binding ligand from moving into where the surface would be. The resulting potential energy surface looks as follows:
 
+<figure>
 <p align="center" >
 <a href="link">
 <img src="figures/global_pes.jpg" alt="smpl_bnding" width="600"></a></p>
+<figcaption>One-dimesnional representation of how the model binding potential energy surface was created with purposeful placement of two Gaussians and one-sided harmonic wall. An inverted three-dimensional Gaussian with a height of 30 kJ/mol is placed at the centre of the box to create the minimia (blue); another three-dimensional Gaussian with height 15 kJ/mol is placed 0.3 nm away in the z-direction to mimick a barrier to dissolution (orange); and a one-sided harmonic wall is placed at -0.125 nm relative to the minima to act as the surface (green). The combined potential energy surface is shown in the dotted black line.  </figcaption>
+</figure>
 
 The details on how this is implemented in PLUMED is discussed in the [input files](inputs.md) section. We are avoiding simulating a binding process to an actual surface in the presence of a solvent in an attempt to produce a simple tutorial free of excessive and/or complicated files which can be performed on virtually any hardware at reasonable speeds. All of the underlying principles remain the same. 
 

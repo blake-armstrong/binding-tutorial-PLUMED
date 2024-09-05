@@ -96,10 +96,12 @@ cp scripts/fes.gnuplot data/
 gnuplot fes.gnuplot
 display fes_radiuses.png
 ```
-
+<figure>
 <p align="center" >
 <a href="link">
 <img src="figures/fes_radiuses.png" alt="eg_pmf" width="700"></a></p>
+<figcaption>One-dimensional PMFs (aligned to the unbound region) as a function of the radius of the flat-bottom cylindrical restraining potential, and how they compared to the input potential energy surface (shwon in the dashed red line). This representation highlights how the relative stability of bound region to the unbound region decreases with increasing radius. The dissolution barrier decreases with increasing radius, as the ligand can more freely move around the barrier in the x and y directions. </figcaption>
+</figure>
 
 This figure makes apparent how the height of the free energy barrier is dependent on the radius of the cylinder, and why it is important to be able to use large flat-bottom cylinders when performing actual binding simulations and the barriers are of interest.
 

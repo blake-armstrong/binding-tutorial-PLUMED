@@ -2,9 +2,12 @@ The in-depth underlying theory for obtaining standardised binding free energies 
 
 Given a system containing some surface, interface or arbitrary binding site, a collective variable is defined as the orthogonal distance between the binding site and binding ligand. For simplicity, this distance will be taken as the z-component of the radial distance, and the surface the ligand will bind to is constructed in the xy-plane. Harmonic restraints are then placed in the x and y plane to tether the binding ligand to the x and y components of its bound configuration, restraining the ligand to a known volume which it is capable of exploring fully over the course of the simulation. Once the simulation has coverged within reason, the PMF as a function of the z-distance collective variable is constructed.
 
+<figure>
 <p align="center" >
 <a href="link">
 <img src="figures/PMF_demo.jpg" alt="eg_pmf" width="700"></a></p>
+<figcaption>One-dimensional PMF of an idealised surface-binding profile. Important points along the profile have been labelled with what they would physically correspond to in the simulation box. The red-shaded region indicates the section along the profile where the ligand is bound to the surface. The green-shaded region indicates the section along the profile where the ligand is unbound and no longer interacts with the surface.</figcaption>
+</figure>
 
 The free energy change between regions along the PMF defined as bound and unbound is calculated from the ratio of the integrals of these regions as given by the following equation:
 

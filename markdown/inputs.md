@@ -160,26 +160,26 @@ Here we will discuss all of the sections of the PLUMED input file (plumed.inp).
 
 
 ```plumed
-#SOLUTIONFILE=reference_data/radius_0.0/Walker_0/plumed.inp
+#SOLUTIONFILE=simulation_files/plumed_example.inp
 RESTART
 ```
 Required for multiple walkers. Ensures each walker reads HILLS from all walkers when initialised.
 
 ```plumed
-#SOLUTIONFILE=reference_data/radius_0.0/Walker_0/plumed.inp
+#SOLUTIONFILE=simulation_files/plumed_example.inp
 UNITS ENERGY=kj/mol LENGTH=nm TIME=ps
 ```
 Simulation units. Same as OpenMM units for consistency. Not a necessity.
 
 ```plumed
-#SOLUTIONFILE=reference_data/radius_0.0/Walker_0/plumed.inp
+#SOLUTIONFILE=simulation_files/plumed_example.inp
 fixed1: FIXEDATOM AT=2.50,2.50,2.50
 d1: DISTANCE ATOMS=fixed1,1 NOPBC COMPONENTS
 ```
 Here we define our distance that we will use for the z-distance collective variable. We define a fixed point at the middle of our cubic simulation box (50 Å in each direction) and calculate the distance between the fixed point and our one particle, and save it to the `d1` variable. 
 
 ```plumed
-#SOLUTIONFILE=reference_data/radius_0.0/Walker_0/plumed.inp
+#SOLUTIONFILE=simulation_files/plumed_example.inp
 rd: CUSTOM ...
 
    ARG=d1.x,d1.y
@@ -193,7 +193,7 @@ rdb: BIASVALUE ARG=rd
 Here we use the x and y components of the d1 variable to create `rd`, the flat-bottomed cylindrical restraining potential. We then tell PLUMED to actually use the potential to apply forces throughout the simulation, and not just record its value. 
 
 ```plumed
-#SOLUTIONFILE=reference_data/radius_0.0/Walker_0/plumed.inp
+#SOLUTIONFILE=simulation_files/plumed_example.inp
 uwall: UPPER_WALLS ARG=d1.z  AT=1.500 KAPPA=14473
 lwall: LOWER_WALLS ARG=d1.z AT=-0.125 KAPPA=14473
 ```
@@ -202,7 +202,7 @@ Here we define upper and lower harmonic walls in the z-dimension. The lower wall
 
 
 ```plumed
-#SOLUTIONFILE=reference_data/radius_0.0/Walker_0/plumed.inp
+#SOLUTIONFILE=simulation_files/plumed_example.inp
 fixed2: FIXEDATOM AT=2.50,2.50,2.80
 d2: DISTANCE ATOMS=fixed2,1 NOPBC COMPONENTS
 
@@ -236,19 +236,19 @@ The following is used to create an arbitrary potential energy surface that mimic
 
 
 ```plumed
-#SOLUTIONFILE=reference_data/radius_0.0/Walker_0/plumed.inp
+#SOLUTIONFILE=simulation_files/plumed_example.inp
 PRINT FILE=colvar STRIDE=1000 ARG=*
 ```
 This will output a collective variable file to monitor that everything in the simulation is proceeding as expected.
 
 ```plumed
-#SOLUTIONFILE=reference_data/radius_0.0/Walker_0/plumed.inp
+#SOLUTIONFILE=simulation_files/plumed_example.inp
 FLUSH STRIDE=1000
 ```
 This will flushing the output every 1000 steps, allowing us to monitor that everything within PLUMED is woring as it should while the simulation is running.
 
 ```plumed
-#SOLUTIONFILE=reference_data/radius_0.0/Walker_0/plumed.inp
+#SOLUTIONFILE=simulation_files/plumed_example.inp
 METAD ...
   ARG=d1.z                      # Active CV.
   HEIGHT=2.5                    # Gaussian height. Approximately kBT in this case.
