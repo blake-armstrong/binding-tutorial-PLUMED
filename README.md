@@ -1,4 +1,4 @@
-This repository contains a tutorial on calculating standardarised binding free energies to a surface with Metadynamics through [PLUMED](https://www.plumed.org/) and [OpenMM](https://openmm.org/) for the [PLUMED-TUTORIALS](https://www.plumed-tutorials. org/) page. The repository has been structured according to the [contribution instructions](https://www.plumed-tutorials.org/contribute.html) outined by PLUMED. 
+This repository contains a tutorial on calculating standardarised binding free energies to a surface with Metadynamics through [PLUMED](https://www.plumed.org/) and [OpenMM](https://openmm.org/) for the [PLUMED-TUTORIALS](https://www.plumed-tutorials.org/) page. The repository has been structured according to the [contribution instructions](https://www.plumed-tutorials.org/contribute.html) outined by PLUMED. 
 
 Contained in the `ZIPS/` directory as `tutorial.zip` are all the files required to begin and complete the tutorials, which can be downloaded using `curl`:
 

@@ -81,7 +81,7 @@ $$
 
 $$
 \begin{align*}
-\text{volume} &= \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\exp\left(-\frac{U(r)}{k_BT}\right) dx\ dy\ dz \\[2ex]
+\text{volume} &= \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\exp\left(-\frac{U(r)}{k_BT}\right) dx\ dy\ dz \\
 &= \int_{0}^{+\infty}\int_{0}^{2\pi}\int_{0}^{\pi}r^2 \sin\phi \exp\left(-\frac{U(r)}{k_BT}\right) dr\ d\theta d\phi \\
 &= 4\pi\left[\int_{0}^{R}r^2 dr + \int_{R}^{+\infty}r^2 \exp\left(-\frac{K(r-R)^2}{2k_BT}\right) dr\right] \\
 &= 4\pi\left[\frac{1}{3}R^3 + \int_{0}^{+\infty}(r+R)^2 \exp\left(-\frac{Kr^2}{2k_BT}\right) dr\right] \\
@@ -93,10 +93,10 @@ The 1D and 3D volumes will become relevant when estimating the free energy corre
 
 The volume of a cylindrical restraint can then be taken as the 2D volume multiplied by the height of the cylinder. In the context of the original paper by Doudou <em>et al.</em> (1), their Equation 8 (the area of the unbound binding ligand) can be replaced by our equation for the volume explored by a flat-bottom harmonic restraining potential in 2D. When R = 0, i.e., there is no flat-bottom, our equation collapses to the original. 
 
-The free energy correction for the unbound volume ($\Delta G_V$) is then given by the ratio of our unbound volume ($V_u$) to the standard-state volume ($V^{\minuso} = 1661~\AA^3 $) of a 1 M solution.
+The free energy correction for the unbound volume ($\Delta G_V$) is then given by the ratio of our unbound volume ($V_u$) to the standard-state volume ($V^{⦵} = 1661~Å^3 $) of a 1 M solution.
 
 $$
-\Delta G_V = -RT \ln{\bigg( \frac{V_u}{V^{\minuso}} \bigg)}
+\Delta G_V = -RT \ln{\bigg( \frac{V_u}{V^{\⦵}} \bigg)}
 $$
 
 To correct for the volume explored in the bound region, the simplest way to accurately account for the change in volume before and after applying the cylindrical restraining potential is to use an alchemical free energy perturbation technique. The theory behind alchemical perturbation is not a focus here. An in-depth explanation can be found in any free energy calculation text book or [online](https://alchemistry.org/wiki/Main_Page). The restraining potential is incremenetally turned off by a scaling parameter ($\lambda$) while the binding ligand remains in the binding site to give a free energy correction for the bound volume ($\Delta G_R$):
@@ -111,7 +111,7 @@ Another method with improved accuracy to calculate free energy differences is th
 Finally, the standardised binding free energy is obtained from the PMF free energy in combination with the two volume correction steps:
 
 $$
-\Delta G^{\minuso} = \Delta G_{PMF} + \Delta G_{V} + \Delta G_{R}
+\Delta G^{\⦵} = \Delta G_{PMF} + \Delta G_{V} + \Delta G_{R}
 $$
 
 Standardising this quantity allows it it to be compared with other simulations and experiments, which can be using different free energy methods.

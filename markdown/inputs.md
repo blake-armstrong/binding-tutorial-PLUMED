@@ -176,7 +176,7 @@ Simulation units. Same as OpenMM units for consistency. Not a necessity.
 fixed1: FIXEDATOM AT=2.50,2.50,2.50
 d1: DISTANCE ATOMS=fixed1,1 NOPBC COMPONENTS
 ```
-Here we define our distance that we will use for the z-distance collective variable. We define a fixed point at the middle of our cubic simulation box (50 $\AA$ in each direction) and calculate the distance between the fixed point and our one particle, and save it to the `d1` variable. 
+Here we define our distance that we will use for the z-distance collective variable. We define a fixed point at the middle of our cubic simulation box (50 Å in each direction) and calculate the distance between the fixed point and our one particle, and save it to the `d1` variable. 
 
 ```plumed
 #SOLUTIONFILE=reference_data/radius_0.0/Walker_0/plumed.inp
