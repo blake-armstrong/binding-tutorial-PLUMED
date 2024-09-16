@@ -1,6 +1,8 @@
 The in-depth underlying theory for obtaining standardised binding free energies is best explained in the original paper by Doudou <em>et al.</em> (1), however, we will go over it briefly here. 
 
-Given a system containing some surface, interface or arbitrary binding site, a collective variable is defined as the orthogonal distance between the binding site and binding ligand. For simplicity, this distance will be taken as the z-component of the radial distance, and the surface the ligand will bind to is constructed in the xy-plane. Harmonic restraints are then placed in the x and y plane to tether the binding ligand to the x and y components of its bound configuration, restraining the ligand to a known volume which it is capable of exploring fully over the course of the simulation. Once the simulation has converged within reason, the PMF as a function of the z-distance collective variable is constructed.
+Given a system containing some surface, interface or arbitrary binding site, a collective variable is defined as the orthogonal distance between the binding site and binding ligand. For simplicity, this distance will be taken as the z-component of the radial distance, and the surface the ligand will bind to is constructed in the xy-plane. Harmonic restraints are then placed in the x and y plane to tether the binding ligand to the x and y components of its bound configuration, restraining the ligand to a known volume which it is capable of exploring fully over the course of the simulation. See the following papers by our group for how exactly this has been done for systems of halite and calcite surfaces (2, 3).
+
+Once the simulation has converged within reason, the PMF as a function of the z-distance collective variable is constructed.
 
 <figure>
 <p align="center" >
@@ -108,7 +110,7 @@ $$
 \Delta G_R = -RT \sum^{n-1}_{i=0} \ln{\bigg \langle  \exp{\bigg( -\frac{U(\lambda_{i+1}) - U(\lambda_i)}{RT} \bigg)}  \bigg \rangle}
 $$
 
-Another method with improved accuracy to calculate free energy differences is the [Bennet acceptance ratio method](https://alchemistry.org/wiki/Bennett_Acceptance_Ratio) (2). Many MD software have these free energy perturbation techniques implemented already (e.g., [LAMMPS](https://docs.lammps.org/compute_fep.html)), or can be easily implemented by yourself (e.g., [OpenMM](http://docs.openmm.org/7.4.0/api-python/generated/simtk.openmm.app.simulation.Simulation.html) via a custom Reporter for the Simulation object). There are also Python packages that can analyse the raw potential energy changes from an alchemical perturbation simulation and perform the Bennet acceptance ratio method to produce a free energy, see [pymbar](https://github.com/choderalab/pymbar). In the case of our toy system, the alchemical perturbation step will be replaced with an analytical estimate due to the simpplcity of the potential energy surface. See the section on [system setup](system.md) and [analysis](analysis.md) for more details. This will allow the focus to remain on PLUMED and Metadynamics.
+Another method with improved accuracy to calculate free energy differences is the [Bennet acceptance ratio method](https://alchemistry.org/wiki/Bennett_Acceptance_Ratio) (4). Many MD software have these free energy perturbation techniques implemented already (e.g., [LAMMPS](https://docs.lammps.org/compute_fep.html)), or can be easily implemented by yourself (e.g., [OpenMM](http://docs.openmm.org/7.4.0/api-python/generated/simtk.openmm.app.simulation.Simulation.html) via a custom Reporter for the Simulation object). There are also Python packages that can analyse the raw potential energy changes from an alchemical perturbation simulation and perform the Bennet acceptance ratio method to produce a free energy, see [pymbar](https://github.com/choderalab/pymbar). In the case of our toy system, the alchemical perturbation step will be replaced with an analytical estimate due to the simpplcity of the potential energy surface. See the section on [system setup](system.md) and [analysis](analysis.md) for more details. This will allow the focus to remain on PLUMED and Metadynamics.
 
 
 Finally, the standardised binding free energy is obtained from the PMF free energy in combination with the two volume correction steps:
@@ -122,7 +124,9 @@ Standardising this quantity allows it it to be compared with other simulations a
 <h3>References</h3>
 
 1. Doudou S, Burton NA, Henchman RH. Standard free energy of binding from a one-dimensional potential of mean force. Journal of chemical theory and computation. 2009 Apr 14;5(4):909-18.
-2. Bennett CH. Efficient estimation of free energy differences from Monte Carlo data. Journal of Computational Physics. 1976 Oct 1;22(2):245-68.
+2. Silvestri A, Raiteri P, Gale JD. Obtaining consistent free energies for ion binding at surfaces from solution: pathways versus alchemy for determining kink site stability. Journal of Chemical Theory and Computation. 2022 Sep 8;18(10):5901-19.
+3. Armstrong BI, Silvestri A, De La Pierre M, Raiteri P, Gale JD. Determining the complete stability of calcite kink sites: Real vs ideal. The Journal of Physical Chemistry C. 2023 Jul 5;127(28):13958-68.
+4. Bennett CH. Efficient estimation of free energy differences from Monte Carlo data. Journal of Computational Physics. 1976 Oct 1;22(2):245-68.
 
 ---
 
