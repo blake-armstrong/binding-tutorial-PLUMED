@@ -12,7 +12,7 @@ Once downloaded, the input files required to run a simulation with OpenMM and PL
 
 <h3>OpennMM & PLUMED Installation</h3> 
 
-The first thing we need to do is get a working installationg of OpenMM and openmmplumed working. [Comprehensive installation instructions for OpenMM](http://docs.openmm.org/latest/userguide/application/01_getting_started.html). We recommend using conda, as it is the most straight forward way to install without needing to worry about dependencies. After testing the installation with:
+The first thing we need to do is get a working installation of OpenMM and openmmplumed. [Comprehensive installation instructions for OpenMM](http://docs.openmm.org/latest/userguide/application/01_getting_started.html). We recommend using `conda`, as it is the most straight forward way to install without needing to worry about dependencies. After testing the installation with:
 
 ```
 python -m openmm.testInstallation
@@ -41,6 +41,7 @@ here we will find a `run.sh` script here that will handle submitting the run.py 
 There is [extensive documentation for using the OpenMM Python API](http://docs.openmm.org/latest/userguide/application/02_running_sims.html) which we direct you to if you cannot understand some component of the `run.py` file while we briefly discuss it here.
 
 <h4>run.py</h4>
+
 ```
 import openmm as mm
 import openmm.app as app
@@ -48,7 +49,7 @@ import openmm.unit as unit
 from openmmplumed import PlumedForce
 ```
 
-These lines give us access to the OpenMM code, and the OpenMM PLUMED plugin that can parse a PLUMED input file, interpet it, and provide the instructions to OpenMM.
+These lines give us access to the OpenMM code, and the OpenMM PLUMED plugin that can parse a PLUMED input file, interpret it, and provide the instructions to OpenMM.
 
 ```
 coordinates = "coord.pdb"           # Name of our coordinates file.    
@@ -61,10 +62,10 @@ thermo_file = "output.out"          # Name of the file to write our periodic sim
 nthermo = 10000                     # How often to periodicly write simulation output (in steps).
 traj_file = "trajectory.dcd"        # Name of the file to periodicly write our system coordinates to.
 ntraj = 10000                       # How often to periodicly write our system coordinates (in steps).
-nsteps = 100000000                  # Total number of steps to simulate for (this corresponds to 100 ns).
+nsteps = 2000000                    # Total number of steps to simulate for (this corresponds to 2 ns).
 ```
 
-Simuation parameter definitions that will be used further in the file. When providing a unit with a dimension, we make use of the OpenMM unit object.
+Simulation parameter definitions that will be used further in the file. When providing a unit with a dimension, we make use of the OpenMM unit object. By default, each walker will run for 2 ns which should take 5 - 10 minutes to complete. This'll be enough to produce a PMF sufficiently converged to analyse for our purposes. 
 
 
 ```
@@ -247,7 +248,7 @@ This will output a collective variable file to monitor that everything in the si
 #SOLUTIONFILE=simulation_files/plumed_example.inp
 FLUSH STRIDE=1000
 ```
-This will flushing the output every 1000 steps, allowing us to monitor that everything within PLUMED is woring as it should while the simulation is running.
+This will flush the output every 1000 steps, allowing us to monitor that everything within PLUMED is working as it should while the simulation is running.
 
 ```plumed
 #SOLUTIONFILE=simulation_files/plumed_example.inp
@@ -265,6 +266,7 @@ METAD ...
   WALKERS_N=REPLACETOTALWALKERS # Total number of walkers.
 ... METAD
 ```
+
 This tells PLUMED to run multiple-walker metadynamics with a collective variable defined as the z-component of the `d1` distance. WALKERS_ID and WALKERS_N are set to placeholder names which will get replaced when submitting the job through the `run.sh` script. While the multiple walkers run, the HILLS files will be written to and read from the 'BIAS' directory. 
 
 <h4>run.sh</h4>
@@ -274,7 +276,7 @@ The `run.sh` file will handle submitting all of the walkers for a given simulati
 ```
 export OPENMM_CPU_THREADS=1
 ```
-The `OPENMM_CPU_THREADS` environmental variable is used for OpenMM to asign the number of threads per job on the CPU. If this isn't set OpenMM will use all of your avaialble CPU cores. In our case where our system only has one atom, it is the most efficient to run with only one thread per walker.
+The `OPENMM_CPU_THREADS` environmental variable is used for OpenMM to assign the number of threads per job on the CPU. If this isn't set OpenMM will use all of your available CPU cores. In our case where our system only has one atom, it is the most efficient to run with only one thread per walker.
 
 ```
 pids=""

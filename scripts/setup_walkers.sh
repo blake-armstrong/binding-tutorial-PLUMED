@@ -25,7 +25,9 @@ for i in ${!names[@]}; do
   for j in $(seq 0 $((numwalkers-1))); do
     mkdir -p Walker_${j}
     cd Walker_${j}/
-    cp ${cwd}/simulation_files/${j}.pdb coord.pdb
+    rand=$((25 + RANDOM%(14)))
+    sed "s/YY/${rand}/" ${cwd}/simulation_files/ref.pdb > coord.pdb
+    # cp ${cwd}/simulation_files/${j}.pdb coord.pdb
     cp ../plumed.inp .
     cp ${cwd}/simulation_files/argon.xml .
     sed -i.bak "s/REPLACETOTALWALKERS/${numwalkers}/" plumed.inp
