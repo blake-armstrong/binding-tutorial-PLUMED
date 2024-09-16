@@ -34,7 +34,7 @@ or
 bash scripts/setup_walkers.sh NUMWALKERS
 ```
 
-will create a set of directory trees within the `data` directory labeled with radiuses ranging from 0.0 nm to 0.5 nm. `NUMWALKERS` is an integer for the number of walkers desired with the default being 4. These directories are where the multiple walker simulations will be run for systems with various radiuses for the flat-bottom cylindrical restraining potential. This setup script has been included so the user can play around with different numbers of walkers in an easy way, if they so desire. By default, it will create directories and setups for four walkers. 
+will create a set of directory trees within the `data` directory labeled with radiuses ranging from 0.0 nm to 0.5 nm. `NUMWALKERS` is an integer for the number of walkers desired with the default being 4. These directories are where the multiple walker simulations will be run for systems with various radiuses for the flat-bottom cylindrical restraining potential. This setup script has been included so the user can play around with different numbers of walkers in an easy way, if they so desire. By default, it will create directories and setups for four walkers. The details on how to run a single walker are discussed further later.
 
 If we navigate to the directory for a radius of 0.0 nm,
 
@@ -273,7 +273,7 @@ METAD ...
 ... METAD
 ```
 
-This tells PLUMED to run multiple-walker metadynamics with a collective variable defined as the z-component of the `d1` distance. WALKERS_ID and WALKERS_N are set to placeholder names which will get replaced when submitting the job through the `run.sh` script. While the multiple walkers run, the HILLS files will be written to and read from the 'BIAS' directory. 
+This tells PLUMED to run multiple-walker metadynamics with a collective variable defined as the z-component of the `d1` distance. WALKERS_ID and WALKERS_N are set to placeholder names which will get replaced when submitting the job through the `run.sh` script. While the multiple walkers run, the HILLS files will be written to and read from the 'BIAS' directory. If you wish to run a single walker simulation, the `RESTART` keyword should be removed, alongside the last four lines inside the `METAD` section. The `HILLS` file will then be written inside if the current directory instead of a dedicated `BIAS` directory. The analysis scripts will then need to be modified accordingly. 
 
 <h4>run.sh</h4>
 
