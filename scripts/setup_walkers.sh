@@ -1,8 +1,30 @@
 #!/bin/bash
 
+error_exit() {
+    echo "Error: $1" >&2
+    exit 1
+}
+
+if [ $# -gt 0 ]; then
+    if ! [[ $1 =~ ^[0-9]+$ ]]; then
+        error_exit "Number of walkers should be a positive integer."
+    fi
+    
+    if [ $1 -le 1 ]; then
+        error_exit "Need more than one walker for multiple walkers."
+    fi
+    
+fi
+
+numwalkers=${1:-4}
+
 names=("radius_0.0" "radius_0.1" "radius_0.2" "radius_0.3" "radius_0.4" "radius_0.5")
 radiuses=(0.0 0.1 0.2 0.3 0.4 0.5)
-numwalkers=4
+
+
+
+
+
 cwd=$(pwd)
 mkdir -p data
 cd data

@@ -28,7 +28,13 @@ Running the bash script `setup_walkers.sh`
 bash scripts/setup_walkers.sh
 ```
 
-will create a set of directory trees within the `data` directory labeled with radiuses ranging from 0.0 nm to 0.5 nm. These directories are where the multiple walker simulations will be run for systems with various radiuses for the flat-bottom cylindrical restraining potential. This setup script has been included so the user can play around with different numbers of walkers in an easy way, if they so desire. By default, it will create directories and setups for four walkers. 
+or
+
+```
+bash scripts/setup_walkers.sh NUMWALKERS
+```
+
+will create a set of directory trees within the `data` directory labeled with radiuses ranging from 0.0 nm to 0.5 nm. `NUMWALKERS` is an integer for the number of walkers desired with the default being 4. These directories are where the multiple walker simulations will be run for systems with various radiuses for the flat-bottom cylindrical restraining potential. This setup script has been included so the user can play around with different numbers of walkers in an easy way, if they so desire. By default, it will create directories and setups for four walkers. 
 
 If we navigate to the directory for a radius of 0.0 nm,
 
