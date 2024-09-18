@@ -12,7 +12,7 @@ Once downloaded, the input files required to run a simulation with OpenMM and PL
 
 <h3>OpennMM & PLUMED Installation</h3>
 
-The first thing we need to do is get a working installation of OpenMM and openmmplumed. [Comprehensive installation instructions for OpenMM](http://docs.openmm.org/latest/userguide/application/01_getting_started.html). We recommend using `conda`, as it is the most straight forward way to install the software without needing to worry about dependencies. After testing the installation with:
+The first thing we need to do is get a working installation of OpenMM and openmmplumed. [Comprehensive installation instructions for OpenMM](http://docs.openmm.org/latest/userguide/application/01_getting_started.html). We recommend using `conda`, as it is the most straight forward way to install the software without needing to worry about dependencies. See [instructions for installing conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html). After testing the installation with:
 
 ```
 python -m openmm.testInstallation
