@@ -1,24 +1,24 @@
 <h3>Input files</h3>
 
-All files and data required to perform this tutorial are on the [GitHub repository](https://github.com/blake-armstrong/binding-tutorial-PLUMED). They can either be accessed by cloning the repository to the machine you're working on,
+All files and data required to perform this tutorial are on the [GitHub repository](https://github.com/blake-armstrong/binding-tutorial-PLUMED). They can either be accessed by cloning the repository to your machine;
 
 ```
 git clone https://github.com/blake-armstrong/binding-tutorial-PLUMED
 ```
 
-or by following the download instructions in the `README.md` page on the repository to download the bare-bones ZIP file.
+or by following the download instructions in the `README.md` page on the repository to download the basic ZIP file.
 
-Once downloaded, the input files required to run a simulation with OpenMM and PLUMED are provided in the `simulation_files` directory. Included in the `scripts` directory are bash scripts that will automate setting up the multiple-walker simulation files and will analyse the output for you. These scripts are not strictly necessary to perform this tutorial, the actions they perform can be done manually by the user. All the data has already been produced and analysed, and is presented in the 'data' directory. We will discuss how that data was produced and analysed so you can do it all yourself.
+Once downloaded, the input files required to run a simulation with OpenMM and PLUMED are provided in the `simulation_files` directory. Included in the `scripts` directory are bash scripts that will automate setting up the multiple-walker simulation files and will analyse the output for you. These scripts are not strictly necessary to perform this tutorial, as the actions they perform can be carried out manually by the user. All the data has already been produced and analysed, and is presented in the 'data' directory. We will discuss how that data was produced and analysed so you can do it all yourself.
 
-<h3>OpennMM & PLUMED Installation</h3> 
+<h3>OpennMM & PLUMED Installation</h3>
 
-The first thing we need to do is get a working installation of OpenMM and openmmplumed. [Comprehensive installation instructions for OpenMM](http://docs.openmm.org/latest/userguide/application/01_getting_started.html). We recommend using `conda`, as it is the most straight forward way to install without needing to worry about dependencies. After testing the installation with:
+The first thing we need to do is get a working installation of OpenMM and openmmplumed. [Comprehensive installation instructions for OpenMM](http://docs.openmm.org/latest/userguide/application/01_getting_started.html). We recommend using `conda`, as it is the most straight forward way to install the software without needing to worry about dependencies. After testing the installation with:
 
 ```
 python -m openmm.testInstallation
 ```
 
-All platforms available to you will be shown. In this tutorial we use the CPU platform, and the provided input files set up a simulation to use the CPU platform, which every user should have available by default. The [instructions to install the OpenMM PLUMED plugin](https://github.com/openmm/openmm-plumed) are also very simple when using conda. This will also install the command line plumed tool which will be used for analysis later on.
+All platforms available to you will be shown. In this tutorial we use the CPU platform, and the input files provided set up a simulation to use the CPU platform, which every user should have available by default. The [instructions to install the OpenMM PLUMED plugin](https://github.com/openmm/openmm-plumed) are also very simple when using conda. This will also install the command line plumed tool which will be used for analysis later on.
 
 <h3>Running a simulation</h3>
 
@@ -34,7 +34,7 @@ or
 bash scripts/setup_walkers.sh NUMWALKERS
 ```
 
-will create a set of directory trees within the `data` directory labeled with radiuses ranging from 0.0 nm to 0.5 nm. `NUMWALKERS` is an integer for the number of walkers desired with the default being 4. These directories are where the multiple walker simulations will be run for systems with various radiuses for the flat-bottom cylindrical restraining potential. This setup script has been included so the user can play around with different numbers of walkers in an easy way, if they so desire. By default, it will create directories and setups for four walkers. The details on how to run a single walker are discussed further later.
+will create a set of directory trees within the `data` directory labelled with cylinder radii ranging from 0.0 nm to 0.5 nm. `NUMWALKERS` is an integer for the number of walkers desired with the default being 4 (NB this can be changed but must be greater than 1 for multiple walker metadynamics). These directories are where the multiple walker simulations will be run for systems with various radii for the flat-bottom cylindrical restraining potential. This setup script has been included so that the user can play around with different numbers of walkers in an easy way, if they so desire. By default, it will create directories and setups for four walkers. The details on how to run a single walker are discussed further later.
 
 If we navigate to the directory for a radius of 0.0 nm,
 
@@ -71,7 +71,7 @@ ntraj = 10000                       # How often to periodicly write our system c
 nsteps = 2000000                    # Total number of steps to simulate for (this corresponds to 2 ns).
 ```
 
-Simulation parameter definitions that will be used further in the file. When providing a unit with a dimension, we make use of the OpenMM unit object. By default, each walker will run for 2 ns which should take 5 - 10 minutes to complete. This'll be enough to produce a PMF sufficiently converged to analyse for our purposes. 
+Simulation parameter definitions that will be used further in the file. When providing a unit with a dimension, we make use of the OpenMM unit object. By default, each walker will run for 2 ns which should take 5 - 10 minutes to complete. This should be enough to produce a PMF that is sufficiently converged to analyse for our purposes due to the simplicity of the model system.
 
 
 ```
@@ -99,7 +99,7 @@ for n, force in enumerate(system.getForces()):
         system.removeForce(n)
         break
 ```
-This section is needed to prevent the thermal energy from being sucked out of the system as we have only one particle. It is not important to understand.
+This section is needed to prevent the thermal energy from being removed from the system as we have only one particle. It is not important to understand, as it would not generally be necessary for a real simulation.
 
 ```
 with open(plumed_file, "r") as f:
@@ -185,7 +185,7 @@ Simulation units. Same as OpenMM units for consistency. Not a necessity.
 fixed1: FIXEDATOM AT=2.50,2.50,2.50
 d1: DISTANCE ATOMS=fixed1,1 NOPBC COMPONENTS
 ```
-Here we define our distance that we will use for the z-distance collective variable. We define a fixed point at the middle of our cubic simulation box (50 Å in each direction) and calculate the distance between the fixed point and our one particle, and save it to the `d1` variable. 
+Here we define our z-distance that we will use for the collective variable. We define a fixed point at the middle of our cubic simulation box (50 Å in each direction) and calculate the distance between the fixed point and our one particle, and save it to the `d1` variable.
 
 ```plumed
 #SOLUTIONFILE=simulation_files/plumed_example.inp
@@ -199,7 +199,7 @@ rd: CUSTOM ...
 
 rdb: BIASVALUE ARG=rd
 ```
-Here we use the x and y components of the d1 variable to create `rd`, the flat-bottomed cylindrical restraining potential. We then tell PLUMED to actually use the potential to apply forces throughout the simulation, and not just record its value. 
+Here we use the x and y components of the d1 variable to create `rd`, the flat-bottomed cylindrical restraining potential. We then tell PLUMED to actually use the potential to apply forces throughout the simulation, and not just record its value.
 
 ```plumed
 #SOLUTIONFILE=simulation_files/plumed_example.inp
@@ -273,11 +273,11 @@ METAD ...
 ... METAD
 ```
 
-This tells PLUMED to run multiple-walker metadynamics with a collective variable defined as the z-component of the `d1` distance. WALKERS_ID and WALKERS_N are set to placeholder names which will get replaced when submitting the job through the `run.sh` script. While the multiple walkers run, the HILLS files will be written to and read from the 'BIAS' directory. If you wish to run a single walker simulation, the `RESTART` keyword should be removed, alongside the last four lines inside the `METAD` section. The `HILLS` file will then be written inside if the current directory instead of a dedicated `BIAS` directory. The analysis scripts will then need to be modified accordingly. 
+This tells PLUMED to run multiple walker metadynamics with a collective variable defined as the z-component of the `d1` distance. WALKERS_ID and WALKERS_N are set to placeholder names which will get replaced when submitting the job through the `run.sh` script. While the multiple walkers run, the HILLS files will be written to and read from the 'BIAS' directory. If you wish to run a single walker simulation, the `RESTART` keyword should be removed, alongside the last four lines inside the `METAD` section. The `HILLS` file will then be written inside the current directory instead of a dedicated `BIAS` directory. The analysis scripts will then need to be modified accordingly.
 
 <h4>run.sh</h4>
 
-The `run.sh` file will handle submitting all of the walkers for a given simulation. 
+The `run.sh` file will handle submitting all of the walkers for a given simulation.
 
 ```
 export OPENMM_CPU_THREADS=1
@@ -296,11 +296,11 @@ done
 echo "To kill walkers call ' kill -9 ${pids} '"
 ```
 
-This for loop iterates through every walker directory and runs `python3 ../../simulation_files/run.py` to begin the metadynamics simulation, and submits the job as a background process with `&`. The script saves the process ID and outputs it to the screen afterwards to make it easy to kill the background processes if something goes wrong. On UNIX-based operating systems you can run the `htop` command to monitor the background processes.
+This for loop iterates through every walker directory and runs `python3 ../../simulation_files/run.py` to begin the metadynamics simulation, and submits the job as a background process with `&`. The script saves the process ID and outputs it to the screen afterwards to make it easy to kill the background processes if something goes wrong. On UNIX-based operating systems you can run either the `top` or `htop` command to monitor the background processes.
 
 <h4>Beginning the simulation</h4>
 
-To begin your simulations for a given radius run the command `bash run.sh` from the `data/radius_0.x` directory. If you do not modify the `run.py` file, each walker will run for 100 ns to give a combined time of 400 ns. This amount of time is enough for the PMFs to adequately converge. Feel free to run for longer to get a smoother profile! Once your simulations have finished running, it is time to [analyse](analysis.md).
+To begin your simulations for a given radius run the command `bash run.sh` from the `data/radius_0.x` directory. If you do not modify the `run.py` file, each walker will run for 100 ns to give a combined time of 400 ns. This amount of time is enough for the PMFs to adequately converge. Feel free to run for longer to get an even smoother profile! Once your simulations have finished running, it is time to [analyse](analysis.md).
 
 ---
 
