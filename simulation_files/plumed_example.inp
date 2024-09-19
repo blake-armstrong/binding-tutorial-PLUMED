@@ -78,7 +78,7 @@ METAD ...
   BIASFACTOR=18 TEMP=300        # Well-tempered parameters.
   GRID_MIN=-0.5                 # Grid parameters for d1.z CV.
   GRID_MAX=1.8                  # 
-  WALKERS_DIR=../BIAS           # Multiple walkers directory for reading/writing BIAS.
+  WALKERS_DIR=.           # Multiple walkers directory for reading/writing BIAS.
   WALKERS_RSTRIDE=1000          # Multiple walkers reading pace.
   WALKERS_ID=0    # ID of current walker.
   WALKERS_N=4 # Total number of walkers.

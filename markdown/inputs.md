@@ -161,34 +161,35 @@ simulation.reporters.append(
 
 simulation.step(nsteps)
 ```
+
 The details of this section are better explained in the [OpenMM docs](http://docs.openmm.org/latest/userguide/application/02_running_sims.html).
 
-<h4>plumed.inp</h34>
+<h4>plumed.inp</h4>
 
 Here we will discuss all of the sections of the PLUMED input file (plumed.inp).
 
 
 ```plumed
-#SOLUTIONFILE=simulation_files/plumed_example.inp
 RESTART
 ```
 Required for multiple walkers. Ensures each walker reads HILLS from all walkers when initialised.
 
 ```plumed
-#SOLUTIONFILE=simulation_files/plumed_example.inp
 UNITS ENERGY=kj/mol LENGTH=nm TIME=ps
 ```
 Simulation units. Same as OpenMM units for consistency. Not a necessity.
 
 ```plumed
-#SOLUTIONFILE=simulation_files/plumed_example.inp
 fixed1: FIXEDATOM AT=2.50,2.50,2.50
 d1: DISTANCE ATOMS=fixed1,1 NOPBC COMPONENTS
 ```
 Here we define our z-distance that we will use for the collective variable. We define a fixed point at the middle of our cubic simulation box (50 Å in each direction) and calculate the distance between the fixed point and our one particle, and save it to the `d1` variable.
 
 ```plumed
-#SOLUTIONFILE=simulation_files/plumed_example.inp
+#HIDDEN
+fixed1: FIXEDATOM AT=2.50,2.50,2.50
+d1: DISTANCE ATOMS=fixed1,1 NOPBC COMPONENTS
+#ENDHIDDEN
 rd: CUSTOM ...
 
    ARG=d1.x,d1.y
@@ -202,7 +203,10 @@ rdb: BIASVALUE ARG=rd
 Here we use the x and y components of the d1 variable to create `rd`, the flat-bottomed cylindrical restraining potential. We then tell PLUMED to actually use the potential to apply forces throughout the simulation, and not just record its value.
 
 ```plumed
-#SOLUTIONFILE=simulation_files/plumed_example.inp
+#HIDDEN
+fixed1: FIXEDATOM AT=2.50,2.50,2.50
+d1: DISTANCE ATOMS=fixed1,1 NOPBC COMPONENTS
+#ENDHIDDEN
 uwall: UPPER_WALLS ARG=d1.z  AT=1.500 KAPPA=14473
 lwall: LOWER_WALLS ARG=d1.z AT=-0.125 KAPPA=14473
 ```
@@ -211,7 +215,10 @@ Here we define upper and lower harmonic walls in the z-dimension. The lower wall
 
 
 ```plumed
-#SOLUTIONFILE=simulation_files/plumed_example.inp
+#HIDDEN
+fixed1: FIXEDATOM AT=2.50,2.50,2.50
+d1: DISTANCE ATOMS=fixed1,1 NOPBC COMPONENTS
+#ENDHIDDEN
 fixed2: FIXEDATOM AT=2.50,2.50,2.80
 d2: DISTANCE ATOMS=fixed2,1 NOPBC COMPONENTS
 
@@ -241,22 +248,25 @@ g: CUSTOM ...
 
 pes: BIASVALUE ARG=g
 ```
+
 The following is used to create an arbitrary potential energy surface that mimics the binding profile of an atom normal to a surface. There will be a minimum at [2.5, 2.5, 2.5] nm to represent a stable surface site and a maximum at [2.5, 2.5, 2.8] nm to represent a barrier for leaving the surface.
 
 
 ```plumed
-#SOLUTIONFILE=simulation_files/plumed_example.inp
 PRINT FILE=colvar STRIDE=1000 ARG=*
 ```
 This will output a collective variable file to monitor that everything in the simulation is proceeding as expected.
 
 ```plumed
-#SOLUTIONFILE=simulation_files/plumed_example.inp
 FLUSH STRIDE=1000
 ```
 This will flush the output every 1000 steps, allowing us to monitor that everything within PLUMED is working as it should while the simulation is running.
 
 ```plumed
+#HIDDEN
+fixed1: FIXEDATOM AT=2.50,2.50,2.50
+d1: DISTANCE ATOMS=fixed1,1 NOPBC COMPONENTS
+#ENDHIDDEN
 #SOLUTIONFILE=simulation_files/plumed_example.inp
 METAD ...
   ARG=d1.z                      # Active CV.

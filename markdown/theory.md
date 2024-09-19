@@ -7,7 +7,7 @@ Once the simulation is sufficiently converged, the PMF as a function of the z-di
 <figure>
 <p align="center" >
 <a href="link">
-<img src="figures/PMF_demo.jpg" alt="eg_pmf" width="700"></a></p>
+<img src="figures/PMF_demo.png" alt="eg_pmf" width="700"></a></p>
 <figcaption>One-dimensional PMF of an idealised surface-binding profile. Important points along the profile have been labelled with what they would physically correspond to in the simulation. The red-shaded region indicates the section along the profile where the ligand is bound to the surface. The green-shaded region indicates the section along the profile where the ligand is unbound and no longer interacts with the surface.</figcaption>
 </figure>
 
@@ -87,7 +87,7 @@ $$
 $$
 \begin{align*}
 \text{volume} &= \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\exp\left(-\frac{U(r)}{k_BT}\right) dx\ dy\ dz \\
-&= \int_{0}^{+\infty}\int_{0}^{2\pi}\int_{0}^{\pi}r^2 \sin\phi \exp\left(-\frac{U(r)}{k_BT}\right) dr\ d\theta d\phi \\
+&= \int_{0}^{+\infty}\int_{0}^{2\pi}\int_{0}^{\pi}r^2 \sin\phi \exp\left(-\frac{U(r)}{k_BT}\right) dr\ d\theta \ d\phi \\
 &= 4\pi\left[\int_{0}^{R}r^2 dr + \int_{R}^{+\infty}r^2 \exp\left(-\frac{K(r-R)^2}{2k_BT}\right) dr\right] \\
 &= 4\pi\left[\frac{1}{3}R^3 + \int_{0}^{+\infty}(r+R)^2 \exp\left(-\frac{Kr^2}{2k_BT}\right) dr\right] \\
 &= 4\pi\left[\frac{1}{3}R^3 + \frac{(R^2K+k_BT)}{K}\sqrt{\frac{\pi k_BT}{2K}} +\frac{2Rk_BT}{K} \right] \\
