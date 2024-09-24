@@ -253,6 +253,39 @@ The following is used to create an arbitrary potential energy surface that mimic
 
 
 ```plumed
+#HIDDEN
+fixed1: FIXEDATOM AT=2.50,2.50,2.50
+d1: DISTANCE ATOMS=fixed1,1 NOPBC COMPONENTS
+
+fixed2: FIXEDATOM AT=2.50,2.50,2.80
+d2: DISTANCE ATOMS=fixed2,1 NOPBC COMPONENTS
+
+rd1: CUSTOM ...
+
+   ARG=d1.x,d1.y,d1.z
+   VAR=ax,ay,az
+   FUNC=sqrt(ax^2+ay^2+az^2)
+   PERIODIC=NO
+...
+
+rd2: CUSTOM ...
+
+   ARG=d2.x,d2.y,d2.z
+   VAR=bx,by,bz
+   FUNC=sqrt(bx^2+by^2+bz^2)
+   PERIODIC=NO
+...
+
+g: CUSTOM ...
+
+   ARG=rd1,rd2
+   VAR=x,y
+   FUNC=-30*exp(-((x)^2/(2*(0.1^2))))+15*exp(-((y)^2/(2*(0.1^2))))
+   PERIODIC=NO
+...
+
+pes: BIASVALUE ARG=g
+#ENDHIDDEN
 PRINT FILE=colvar STRIDE=1000 ARG=*
 ```
 This will output a collective variable file to monitor that everything in the simulation is proceeding as expected.
@@ -268,6 +301,7 @@ fixed1: FIXEDATOM AT=2.50,2.50,2.50
 d1: DISTANCE ATOMS=fixed1,1 NOPBC COMPONENTS
 #ENDHIDDEN
 #SOLUTIONFILE=simulation_files/plumed_example.inp
+#SETTINGS NREPLICAS=4
 METAD ...
   ARG=d1.z                      # Active CV.
   HEIGHT=2.5                    # Gaussian height. Approximately kBT in this case.
