@@ -301,7 +301,7 @@ fixed1: FIXEDATOM AT=2.50,2.50,2.50
 d1: DISTANCE ATOMS=fixed1,1 NOPBC COMPONENTS
 #ENDHIDDEN
 #SOLUTIONFILE=simulation_files/plumed_example.inp
-#SETTINGS NREPLICAS=4
+#SETTINGS NREPLICAS=3
 METAD ...
   ARG=d1.z                      # Active CV.
   HEIGHT=2.5                    # Gaussian height. Approximately kBT in this case.
