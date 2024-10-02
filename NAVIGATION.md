@@ -27,11 +27,13 @@ Using the PLUMED command line tool and a series of Python and bash scripts, we d
 
 ```mermaid
 flowchart TB
-  A[Original Work] --> B[Theory]
+  F[Metadynamics] --> A[Original Work]
+  A --> B[Theory]
   B --> C[Model system]
   C --> D[Inputs]
   D --> E[Analysis]
-  
+
+  click F "ref1" "A tutorial that introduces the basics of metadynanics"
   click A "Doudou" "Theory behind computing standard binding free energies."
   click B "markdown/theory.md" "Extension to the theory for a cylindrical volume."
   click C "markdown/system.md" "Model system for surface binding calculations."

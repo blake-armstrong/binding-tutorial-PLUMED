@@ -1,3 +1,8 @@
+ref1:
+  location: 21/004
+  type: internal
+
 Doudou:
   location: https://pubmed.ncbi.nlm.nih.gov/26609600/
   type: external
+
